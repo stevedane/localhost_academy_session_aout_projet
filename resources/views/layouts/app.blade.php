@@ -87,10 +87,16 @@
                     </div>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active ">
+                    <li class="nav-item {{request()->route()->uri == 'dashboard' ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('dashboard')}}">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{request()->route()->uri == 'users' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('users.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Users </p>
                         </a>
                     </li>
                 </ul>
@@ -507,6 +513,25 @@
 
         });
     </script>
+    <script>
+        $(document).ready(function() {
+          $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+              [10, 25, 50, -1],
+              [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search records",
+            }
+          });
+    
+          var table = $('#datatable').DataTable();
+    
+        });
+      </script>
 </body>
 
 </html>
