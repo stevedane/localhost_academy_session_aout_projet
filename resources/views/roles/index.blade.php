@@ -10,7 +10,10 @@
               <div class="card-icon">
                 <i class="material-icons">assignment</i>
               </div>
-              <h4 class="card-title">Users</h4>
+              <h4 class="card-title">Roles</h4>
+              <a href="{{route('roles.create')}}" class="btn btn-primary btn-round btn-fab">
+                      <i class="material-icons">favorite</i>
+                    <div class="ripple-container"></div></a>
             </div>
             <div class="card-body">
               <div class="toolbar">
@@ -20,30 +23,35 @@
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Created at</th>
+                      <th>Nom</th>
+                      <th>Code_unique</th>
+                      <th>Description </th>
                       <th class="disabled-sorting text-center">Actions</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Created at</th>
+                      <th>Nom</th>
+                      <th>Code_Unique</th>
+                      <th>Description </th>
                       <th class="text-center">Actions</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    @foreach ($users as $user)  
+                    @foreach ($roles as $role)  
                     <tr>
-                      <td>{{$user->name}}</td>
-                      <td>{{$user->email}}</td>
-                      <td>{{$user->created_at}}</td>
+                      <td>{{$role->name}}</td>
+                      <td>{{$role->email}}</td>
+                      <td>{{$role->created_at}}</td>
                       <td class="text-center">
-                        <a href="{{route('users.show',$user->id)}}" class="btn btn-link btn-info btn-just-icon"><i class="material-icons">visibility</i></a>
-                        <a href="{{route('users.edit',$user->id)}}" class="btn btn-link btn-warning btn-just-icon"><i class="material-icons">edit</i></a>
-                        <a href="{{route('users.destroy',$user->id)}}" class="btn btn-link btn-danger btn-just-icon"><i class="material-icons">delete</i></a>
+                        <a href="{{route('roles.show',$role->id)}}" class="btn btn-link btn-info btn-just-icon"><i class="material-icons">visibility</i></a>
+                        <a href="{{route('roles.edit',$role->id)}}" class="btn btn-link btn-warning btn-just-icon"><i class="material-icons">edit</i></a>
+                        <form action="{{route('roles.destroy',$role->id)}}" method="post">
+                          @csrf
+                          @method('delete')
+                          <button  class="btn btn-link btn-danger btn-just-icon"><i class="material-icons">delete</i></button>
+                        </form>
+                        
                       </td>
                     </tr>
                     @endforeach
