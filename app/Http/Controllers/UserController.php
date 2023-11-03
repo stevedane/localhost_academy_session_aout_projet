@@ -31,38 +31,56 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request ->validate([ 'name' => 'required','email'=>'required','password'=>'required']) ;
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        $user = new User();
+        $user -> name = $name;
+        $user -> email = $email;
+        $user -> password = $password;
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('users.show',['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit',['user'=> $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('users.index');
     }
 }
