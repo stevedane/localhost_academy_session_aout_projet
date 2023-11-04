@@ -20,4 +20,12 @@ Auth::routes();
 
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
-Route::resource('/users', UserController::class);
+Route::middleware('auth')->group(function(){
+    Route::resource('/users', UserController::class);
+
+    Route::get('/profile',[HomeController::class, 'profile'])
+    ->name('profile');
+
+    Route::post('/profile/{user}',[HomeController::class, 'storeProfile'])
+    ->name('store-profile');
+});

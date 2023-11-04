@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -33,5 +36,40 @@ class HomeController extends Controller
 
     public function dashboard(){
         return view('home');
+    }
+
+    public function profile(){
+        return view('profile');
+    }
+
+    public function storeProfile(Request $request, User $user){
+
+        $request->validate([
+            'name' =>'nullable',
+            'picture' =>'nullable|image',
+            'email' =>['nullable',Rule::unique('users')->ignore($user->id)],
+        ]);
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+
+        $user->name = $name ?? $user->name;
+        $user->email = $email ?? $user->email;
+
+        if($request->hasFile('picture')){
+            $picture = $request->file('picture');
+
+            $pictureFileName = 'picture_' . $user->id . '.' . $picture->getClientOriginalExtension();
+            
+            $path = "profiles/" . $pictureFileName;
+                
+            Storage::disk('public')->put($path, file_get_contents($picture));
+
+            $user->picture = $pictureFileName;
+        }
+
+        $user->save();
+
+        return redirect()->route('profile');
     }
 }
