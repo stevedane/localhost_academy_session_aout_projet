@@ -40,9 +40,9 @@
                   <tbody>
                     @foreach ($roles as $role)  
                     <tr>
-                      <td>{{$role->name}}</td>
-                      <td>{{$role->email}}</td>
-                      <td>{{$role->created_at}}</td>
+                      <td>{{$role->nom}}</td>
+                      <td>{{$role->code_unique}}</td>
+                      <td>{{$role->description}}</td>
                       <td class="text-center">
                         <a href="{{route('roles.show',$role->id)}}" class="btn btn-link btn-info btn-just-icon"><i class="material-icons">visibility</i></a>
                         <a href="{{route('roles.edit',$role->id)}}" class="btn btn-link btn-warning btn-just-icon"><i class="material-icons">edit</i></a>

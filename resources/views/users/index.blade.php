@@ -11,6 +11,9 @@
                 <i class="material-icons">assignment</i>
               </div>
               <h4 class="card-title">Users</h4>
+              <a href="{{route('users.create')}}" class="btn btn-primary btn-round btn-fab">
+                      <i class="material-icons">favorite</i>
+                    <div class="ripple-container"></div></a>
             </div>
             <div class="card-body">
               <div class="toolbar">
@@ -43,12 +46,7 @@
                       <td class="text-center">
                         <a href="{{route('users.show',$user->id)}}" class="btn btn-link btn-info btn-just-icon"><i class="material-icons">visibility</i></a>
                         <a href="{{route('users.edit',$user->id)}}" class="btn btn-link btn-warning btn-just-icon"><i class="material-icons">edit</i></a>
-                        <form action="{{route('users.destroy',$user->id)}}" method="post">
-                          @csrf
-                          @method('delete')
-                          <button  class="btn btn-link btn-danger btn-just-icon"><i class="material-icons">delete</i></button>
-                        </form>
-                        
+                        <a href="{{route('users.destroy',$user->id)}}" class="btn btn-link btn-danger btn-just-icon"><i class="material-icons">delete</i></a>
                       </td>
                     </tr>
                     @endforeach

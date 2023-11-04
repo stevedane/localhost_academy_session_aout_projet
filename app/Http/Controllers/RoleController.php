@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -29,13 +30,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $nom = $request->input("nom");
-        $description = $request->input("description");
-        $code_unique = $request->input("code_unique");
+        $request->validate([
+            'nom'=>'required',
+            'description'=> 'required',
+            'code_unique'=> 'required|unique:roles,code_unique',
+        ]);
         $role = new Role();
-        $role->nom = $nom;
-        $role->description = $description;
-        $role->code_unique= $code_unique;
+        $role->nom =  $request->input("nom");
+        $role->description = $request->input("description");
+        $role->code_unique= $request->input("code_unique");
         $role->save();
         return redirect()->route('roles.index')->with('success','');
     }
@@ -45,7 +48,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('roles.show', compact('role'));
     }
 
     /**
@@ -53,7 +56,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -61,7 +64,17 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'nom'=> 'nullable',
+            'description'=>'nullable',
+            'code_unique'=>['nullable',Rule::unique('roles')->ignore($role->id)]]);
+
+        $role->nom=$request->input('nom') ?? $role->nom;
+        $role->description = $request->input('description') ?? $role->description;
+        $role->code_unique= $request->input['code_unique'] ?? $role->code_unique;
+        $role->save();
+        return redirect()->route('roles.index');
+
     }
 
     /**

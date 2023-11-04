@@ -20,9 +20,12 @@
                 </a>
                   </div>
                   <div class="card-body ">
-                    <div class="form-group bmd-form-group">
+                    <div class="form-group bmd-form-group @error('nom') has-danger @enderror">
                       <label for="nom" class="bmd-label-floating"> Nom *</label>
                       <input type="text" class="form-control" id="nom" name="nom" required="true" aria-required="true">
+                          @error('nom')
+                          <label class="error" for="name">{{ $message }}</label>
+                          @enderror
                     </div>
                     <div class="form-group bmd-form-group">
                       <label for="code_unique" class="bmd-label-floating"> Code_Unique *</label>

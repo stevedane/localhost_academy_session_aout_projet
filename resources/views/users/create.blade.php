@@ -1,51 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-    <title>creation-user</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <form action="{{route('users.store')}}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">name</label>
-                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"  >
-                        @error('name')
-                        <span class="invalid-feedback">
-                           <strong>{{$message}}</strong> 
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input name="email" id="email" type="email" class="form-control @error('email') is-invalid @enderror" > 
-                        @error('email')
-                        <span class="invalid-feedback">
-                           <strong>{{$message}}</strong> 
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input name="password" id="password" type="password" class="form-control @error('email') is-invalid @enderror" > 
-                        @error('password')
-                        <span class="invalid-feedback">
-                           <strong>{{$message}}</strong> 
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="submit" value="enregistrer" class="btn btn-success">
-                    </div>
-                    
-                </form>
+@extends('layouts.app')
+
+@section('content')
+    <div class="content">
+        <div class="content-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="{{ route('users.store') }}" method="post" novalidate="novalidate">
+                        @csrf
+                        <div class="card ">
+                            <div class="card-header card-header-rose card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">mail_outline</i>
+                                </div>
+                                <h4 class="card-title">User create</h4>
+                            </div>
+                            <div class="card-body ">
+                                @include('users._form')
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-rose">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+@endsection

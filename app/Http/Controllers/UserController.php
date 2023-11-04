@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create', ['user' => new User()]);
     }
 
     /**
@@ -31,17 +31,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request ->validate([ 'name' => 'required','email'=>'required','password'=>'required']) ;
-
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $password = $request->input('password');
+        $request->validate([
+            'name' =>'required',
+            'email' =>'required|unique:users,email',
+            'password'=>'required|confirmed',
+        ]);
 
         $user = new User();
-        $user -> name = $name;
-        $user -> email = $email;
-        $user -> password = $password;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->save();
 
+        return redirect()->route('users.index');
     }
 
     /**
@@ -57,7 +59,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit',['user'=> $user]);
+        return view('users.edit',['user' => $user]);
     }
 
     /**
@@ -65,13 +67,17 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $name = $request->input('name');
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $user->name = $name;
-        $user->email = $email;
-        $user->password = $password;
+        $request->validate([
+            'name' =>'nullable',
+            'email' =>['nullable',Rule::unique('users')->ignore($user->id)],
+            'password'=>'nullable|confirmed',
+        ]);
+
+        $user->name = $request->input('name') ?? $user->name;
+        $user->email = $request->input('email') ?? $user->email;
+        $user->password = $request->input('password') ?? $user->password;
         $user->save();
+
         return redirect()->route('users.index');
     }
 
