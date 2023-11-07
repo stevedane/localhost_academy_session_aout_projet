@@ -4,8 +4,6 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +34,3 @@ Route::middleware('auth')->group(function(){
     ->name('send-mail');
 });
 Route::resource('/users', UserController::class);
-Route::resource('/roles', RoleController::class);
