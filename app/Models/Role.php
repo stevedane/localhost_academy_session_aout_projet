@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Role extends Model
 {
+
     public function accesses(): HasMany{
         return $this->hasMany(access::class);
     }
