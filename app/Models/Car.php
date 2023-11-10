@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
+
+    public function brand():HasOne
+    {
+        return $this->hasOne(brand::class);
+    }
 }

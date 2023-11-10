@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_customer')->constrained('customer','id');
-            $table->foreignId('id_car')->constrained('car','id');
+            $table->foreignId('id_customer')->constrained('customers','id');
+            $table->foreignId('id_car')->constrained('cars','id');
             $table->date('start_date');
             $table->date('end_date');
             $table->decimal('prix');
