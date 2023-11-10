@@ -31,7 +31,9 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/profile/{user}',[HomeController::class, 'storeProfile'])
     ->name('store-profile');
-    
+
+    Route::get('/mail',[HomeController::class, 'mail'])
+    ->name('send-mail');
 });
 Route::resource('/users', UserController::class);
 

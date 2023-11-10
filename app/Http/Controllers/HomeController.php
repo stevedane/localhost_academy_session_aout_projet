@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -71,5 +73,12 @@ class HomeController extends Controller
         $user->save();
 
         return redirect()->route('profile');
+    }
+
+    public function mail(){
+
+        Mail::to('luzmia277@gmail.com')->send(new TestMail());
+
+        return true;
     }
 }
