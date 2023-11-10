@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_brand')->constrained('brands','id');
-            $table->date('year');
+            $table->string('year');
             $table->string('gaz');
             $table->decimal('sale_price');
             $table->decimal('renting_price');

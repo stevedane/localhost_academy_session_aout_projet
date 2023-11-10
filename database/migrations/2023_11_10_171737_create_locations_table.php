@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->decimal('prix');
-            $table->string('payment_method');
             $table->timestamps();
         });
     }

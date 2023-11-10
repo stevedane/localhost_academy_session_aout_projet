@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('reference');
             $table->enum('system', ['card','mobile_money','cash']);
             $table->string('number');
-
             $table->timestamps();
         });
     }
