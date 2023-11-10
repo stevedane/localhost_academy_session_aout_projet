@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Role extends Model
 {
+    use HasFactory;
 
     public function accesses(): HasMany{
-        return $this->hasMany(access::class);
+        return $this->hasMany(Access::class);
     }
     
-    use HasFactory;
+    
 }

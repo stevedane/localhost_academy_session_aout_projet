@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Payment extends Model
 {
-    public  function location():BelongsTo{
-        return $this->belongsTo(location::class,'idlocation','idpayment');
-    }
     use HasFactory;
+    public  function location():BelongsTo{
+        return $this->belongsTo(Location::class,'idlocation','idpayment');
+    }
+    
 }
