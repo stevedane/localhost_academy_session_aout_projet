@@ -18,10 +18,8 @@ return new class extends Migration
             $table->foreignId('id_car')->constrained('car','id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->decimal('end_date');
             $table->decimal('prix');
-            $table->prix('decimal');
-
+            $table->string('payment_method');
             $table->timestamps();
         });
     }
