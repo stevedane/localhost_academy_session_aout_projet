@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payments', function (Blueprint $table) {
-            $table->id();
+            $table->idpayment();
+            $table->foreignId('idlocation');
             $table->decimal('montant');
             $table->string('reference');
             $table->enum('systemPaiement', ['card','MobileMoney','Espece']);
