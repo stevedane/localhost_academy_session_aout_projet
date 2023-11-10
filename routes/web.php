@@ -34,4 +34,6 @@ Route::middleware('auth')->group(function(){
     ->name('store-profile');
 
     
+    Route::get('/mail',[HomeController::class, 'mail'])
+    ->name('send-mail');
 });

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Test;
+use App\Mail\TestMail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
-use App\Mail\Test;
+use Illuminate\Validation\Rule;
+
 class HomeController extends Controller
 {
     /**
@@ -73,5 +75,12 @@ class HomeController extends Controller
         $user->save();
         
         return redirect()->route('profile');
+    }
+
+    public function mail(){
+
+        Mail::to('luzmia277@gmail.com')->send(new TestMail());
+
+        return true;
     }
 }

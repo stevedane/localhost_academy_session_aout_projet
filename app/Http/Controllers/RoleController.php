@@ -15,6 +15,7 @@ class RoleController extends Controller
     {
         $roles = Role::all();
         return view("roles.index", compact("roles"));
+        //
     }
 
     /**
@@ -23,6 +24,7 @@ class RoleController extends Controller
     public function create()
     {
         return view("roles.create");
+        //
     }
 
     /**
@@ -41,6 +43,7 @@ class RoleController extends Controller
         $role->code_unique= $request->input("code_unique");
         $role->save();
         return redirect()->route('roles.index')->with('success','');
+        //
     }
 
     /**
@@ -49,6 +52,7 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         return view('roles.show', compact('role'));
+        //
     }
 
     /**
@@ -57,6 +61,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         return view('roles.edit', compact('role'));
+        //
     }
 
     /**
@@ -75,6 +80,7 @@ class RoleController extends Controller
         $role->save();
         return redirect()->route('roles.index');
 
+        //
     }
 
     /**
@@ -84,5 +90,6 @@ class RoleController extends Controller
     {
         $role->delete();
         return redirect()->route('roles.index')->with('success','');
+        //
     }
 }
