@@ -14,4 +14,14 @@ class Access extends Model
        'id_role',
        'user_code'
     ]);
+
+    public function user(){
+
+        return $this->belongsTo(User::class,'id_user','id');
+    }
+
+    public function role(){
+
+        return $this->belongsTo(Role::class,'id_role','id');
+    }
 }
