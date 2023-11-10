@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        $table->id();
+        $table->foreignId("category_id")->constrained("categories","id");
+        $table->string('name',255 );  
+        $table->string('description');  
+        $table->timestamps();
         });
     }
 
@@ -25,3 +28,4 @@ return new class extends Migration
         Schema::dropIfExists('brands');
     }
 };
+
