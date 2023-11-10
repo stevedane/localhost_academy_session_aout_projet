@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\GaleryController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RoleController;
 
 
 /*
@@ -25,6 +26,8 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 
 Route::middleware('auth')->group(function(){
     Route::resource('/users', UserController::class);
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/galery', GaleryController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');
@@ -32,6 +35,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/profile/{user}',[HomeController::class, 'storeProfile'])
     ->name('store-profile');
 
+    
     Route::get('/mail',[HomeController::class, 'mail'])
     ->name('send-mail');
 });

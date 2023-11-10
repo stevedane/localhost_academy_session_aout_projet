@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->idpayment();
-            $table->foreignId('idlocation');
-            $table->decimal('montant');
-            $table->string('reference');
-            $table->enum('systemPaiement', ['card','MobileMoney','Espece']);
-            $table->string('paymentNumber');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('nom');
+            $table->integer('code_unique');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('roles');
     }
 };
