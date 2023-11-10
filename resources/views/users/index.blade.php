@@ -11,6 +11,9 @@
                 <i class="material-icons">assignment</i>
               </div>
               <h4 class="card-title">Users</h4>
+              <a href="{{route('users.create')}}" class="btn btn-primary btn-round btn-fab" title="+add">
+                      <i class="material-icons">favorite</i>
+                    <div class="ripple-container"></div></a>
             </div>
             <div class="card-body">
               <div class="toolbar">
