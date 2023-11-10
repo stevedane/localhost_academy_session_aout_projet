@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_comment');
             $table->foreignId('id_user')->constrained('users','id');
             $table->longText('description');
             $table->integer('rate');
