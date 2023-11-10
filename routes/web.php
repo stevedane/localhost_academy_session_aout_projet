@@ -5,6 +5,8 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +39,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/mail',[HomeController::class, 'mail'])
     ->name('send-mail');
 });
+Route::resource('/users', UserController::class);
+
+Route::resource('/roles', RoleController::class);
+
+Route::get('/image-gallery', [ImageGalleryController::class, 'index'])->name('image-galery.index');
