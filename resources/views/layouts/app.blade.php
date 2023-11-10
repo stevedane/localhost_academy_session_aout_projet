@@ -74,27 +74,29 @@
             <div class="sidebar-wrapper">
                 <div class="user">
                     <div class="photo">
-                        <img src="{{ asset('material-dashboard') }}/assets/img/faces/avatar.jpg" />
+                        @if (Auth::user()->picture)
+                            <img src="{{ asset('storage/profiles/' . Auth::user()->picture) }}" />
+                        @else
+                            <img src="{{ asset('material-dashboard') }}/assets/img/faces/avatar.jpg" />
+                        @endif
                     </div>
                     <div class="user-info">
-                        <a data-toggle="collapse" href="#collapseExample" class="username">
+                        <a href="{{ route('profile') }}" class="username">
                             <span>
                                 {{ Auth::user()->name }}
-                                
                             </span>
                         </a>
-                        
                     </div>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item {{request()->route()->uri == 'dashboard' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('dashboard')}}">
+                    <li class="nav-item {{ request()->route()->uri == 'dashboard' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
                             <i class="material-icons">dashboard</i>
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'users' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('users.index')}}">
+                    <li class="nav-item {{ request()->route()->uri == 'users' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('users.index') }}">
                             <i class="material-icons">radio_button_checked</i>
                             <p> Users </p>
                         </a>
@@ -103,6 +105,12 @@
                         <a class="nav-link" href="{{route('roles.index')}}">
                             <i class="material-icons">radio_button_checked</i>
                             <p> Roles </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{request()->route()->uri == 'galery' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('galery.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Galeries </p>
                         </a>
                     </li>
                 </ul>
@@ -149,7 +157,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right"
                                     aria-labelledby="navbarDropdownProfile">
-                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -157,7 +165,8 @@
                                         {{ __('Log out') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -177,7 +186,8 @@
                             document.write(new Date().getFullYear())
                         </script>
                         , made with <i class="material-icons">favorite</i> by
-                        <a href="https://www.localhost-academy.com" target="_blank">Localhost Academy Session August</a> for a better web.
+                        <a href="https://www.localhost-academy.com" target="_blank">Localhost Academy Session
+                            August</a> for a better web.
                     </div>
                 </div>
             </footer>
@@ -522,23 +532,23 @@
     </script>
     <script>
         $(document).ready(function() {
-          $('#datatables').DataTable({
-            "pagingType": "full_numbers",
-            "lengthMenu": [
-              [10, 25, 50, -1],
-              [10, 25, 50, "All"]
-            ],
-            responsive: true,
-            language: {
-              search: "_INPUT_",
-              searchPlaceholder: "Search records",
-            }
-          });
-    
-          var table = $('#datatable').DataTable();
-    
+            $('#datatables').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
+            });
+
+            var table = $('#datatable').DataTable();
+
         });
-      </script>
+    </script>
 </body>
 
 </html>
