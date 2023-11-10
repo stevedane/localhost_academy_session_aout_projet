@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_location')->constrained('location','id');
             $table->foreignId('id_customer')->constrained('customer','id');
             $table->foreignId('id_car')->constrained('car','id');
             $table->date('start_date');
