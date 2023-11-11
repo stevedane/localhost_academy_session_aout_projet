@@ -11,6 +11,6 @@ class Car extends Model
 
     public function brand():HasOne
     {
-        return $this->hasOne(brand::class);
+        return $this->hasOne(Brand::class);
     }
 }

@@ -5,7 +5,8 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Models\Customer;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,8 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 
 Route::middleware('auth')->group(function(){
     Route::resource('/users', UserController::class);
-    Route::resource('/payment', PaymentController::class);
-    Route::resource('/category', CategoryController::class);
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/galery', GaleryController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');
