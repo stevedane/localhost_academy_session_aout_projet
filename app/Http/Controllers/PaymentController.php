@@ -12,7 +12,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::all();
+        return view("payment.index", compact("payments"));
     }
 
     /**
@@ -20,7 +21,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view("payment.create");
     }
 
     /**
@@ -28,7 +29,25 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'montant'=>'required',
+            'reference'=>'required',
+            'system'=>'required',
+            'number'=> 'required|unique:payments,number',
+        ]);
+
+        $montant = $request->input('montant');
+        $reference = $request->input('reference');
+        $system = $request->input('sytem');
+        $number = $request->input('number');
+
+        $payment = new Payment();
+        $payment->montant=$montant;
+        $payment->reference=$reference;
+        $payment->system=$system;
+        $payment->number=$number;
+        $payment->save();
+        return redirect()->route('payment.index');
     }
 
     /**
@@ -36,7 +55,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return view('payment.show', compact('payment'));
     }
 
     /**
@@ -44,7 +63,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return view('payment.edit', compact('payment'));
     }
 
     /**
@@ -52,7 +71,24 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $request->validate([
+            'montant'=>'nullable',
+            'reference'=>'nullable',
+            'system'=>'required',
+            'number'=> 'required|Rule::unique('payments')->ignore($payment->id)',
+        ]);
+
+        $montant = $request->input('montant');
+        $reference = $request->input('reference');
+        $system = $request->input('sytem');
+        $number = $request->input('number');
+
+        $payment->montant=$montant ?? $payment->montant;
+        $payment->reference=$reference ?? $payment->reference;
+        $payment->system=$system ?? $payment->system;
+        $payment->number=$number ?? $payment->number=$number;
+        $payment->save();
+        return redirect()->route('payment.index');
     }
 
     /**
@@ -60,6 +96,7 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        return redirect(route('payment.index'))->with('success','');
     }
 }
