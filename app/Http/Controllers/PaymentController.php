@@ -14,6 +14,7 @@ class PaymentController extends Controller
     {
         $payments = Payment::all();
         return view("payments.index", compact("payments"));
+
     }
 
     /**
@@ -22,6 +23,7 @@ class PaymentController extends Controller
     public function create()
     {
         return view("payments.create");
+
     }
 
     /**
@@ -48,6 +50,7 @@ class PaymentController extends Controller
         $payment->number=$number;
         $payment->save();
         return redirect()->route('payments.index');
+
     }
 
     /**
@@ -56,6 +59,7 @@ class PaymentController extends Controller
     public function show(Payment $payment)
     {
         return view('payments.show', compact('payment'));
+
     }
 
     /**
@@ -64,6 +68,7 @@ class PaymentController extends Controller
     public function edit(Payment $payment)
     {
         return view('payments.edit', compact('payment'));
+
     }
 
     /**
@@ -76,6 +81,7 @@ class PaymentController extends Controller
             'reference'=>'nullable',
             'system'=>'required',
             'number'=> ['require',Rule::unique('payments')->ignore($payment->id)],
+
         ]);
 
         $montant = $request->input('montant');
@@ -89,6 +95,7 @@ class PaymentController extends Controller
         $payment->number=$number ?? $payment->number=$number;
         $payment->save();
         return redirect()->route('payments.index');
+
     }
 
     /**
@@ -98,5 +105,6 @@ class PaymentController extends Controller
     {
         $payment->delete();
         return redirect()->route('payments.index')->with('success','');
+
     }
 }

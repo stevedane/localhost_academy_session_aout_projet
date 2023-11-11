@@ -14,6 +14,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return view("categories.index", compact("categories"));
+
     }
 
     /**
@@ -22,6 +23,7 @@ class CategoryController extends Controller
     public function create()
     {
         return view("categories.create");
+
     }
 
     /**
@@ -48,6 +50,7 @@ class CategoryController extends Controller
     {
     
         return view("categories.show", compact("category"));
+
     }
 
     /**
@@ -56,6 +59,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         return view("categories.edit", compact("category"));
+
     }
 
     /**
@@ -65,6 +69,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name'=> ['nullable',Rule::unique('categories')->ignore($category->id)],
+
             'description'=> "nullable"
         ]);
         $name = $request->input('name');
@@ -73,6 +78,7 @@ class CategoryController extends Controller
         $category->description = $description ?? $category->description;
         $category->save();
         return redirect()->route('categories.index')->with('success','');
+
     }
 
     /**
@@ -82,5 +88,6 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('categories.index')->with("success","");
+
     }
 }

@@ -50,6 +50,7 @@ class LocationController extends Controller
         $location->prix=$request->prix;
         $location->save();
         return redirect()->route('locations.index');
+
     }
 
     /**
@@ -97,6 +98,7 @@ class LocationController extends Controller
         $location->prix= $location ?? $request->prix;
         $location->save();
         return redirect()->route('locations.index');
+
     }
         
     
@@ -108,5 +110,6 @@ class LocationController extends Controller
         //
         $location->delete();
         return redirect()->route('locations.index');
+
     }
 }
