@@ -119,6 +119,18 @@
                             <p> Galeries </p>
                         </a>
                     </li>
+                    <li class="nav-item {{request()->route()->uri == 'galery' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('galery.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> car </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{request()->route()->uri == 'galery' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('galery.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p>location</p>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gaz');
             $table->decimal('sale_price');
             $table->decimal('renting_price');
-            $table->string('avaibility');
+            $table->boolean('avaibility')->nullable();
             $table->timestamps();
         });
     }
