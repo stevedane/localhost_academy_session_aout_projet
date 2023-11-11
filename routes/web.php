@@ -5,8 +5,7 @@ use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-
-
+use App\Models\Customer;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +40,4 @@ Route::middleware('auth')->group(function(){
     ->name('send-mail');
 });
 Route::resource('/users', UserController::class);
+Route::resource('/customers', CustomerController::class);
