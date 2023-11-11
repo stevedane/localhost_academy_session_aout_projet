@@ -12,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view("category.index", compact("categories"));
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("category.create");
     }
 
     /**
@@ -28,7 +29,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name"=> "required|unique:categories,name",
+            "description"=> "required"
+        ]);
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $category = new Category();
+        $category->name = $name;
+        $category->description = $description;
+        $category->save();
     }
 
     /**
@@ -36,7 +46,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+    
+        return view("category.show", compact("category"));
     }
 
     /**
@@ -44,7 +55,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view("category.edit", compact("category"));
     }
 
     /**
@@ -52,7 +63,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name'=> 'nullable|Rule::unique('categories')->ignore($category->id)',
+            'description'=> "nullable"
+        ]);
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $category->name = $name ?? $category->name;
+        $category->description = $description ?? $category->description;
+        $category->save();
+        return redirect()->route('category.index')->with('success','');
     }
 
     /**
@@ -60,6 +80,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect("")->route('category.index')->with("success","");
     }
 }
