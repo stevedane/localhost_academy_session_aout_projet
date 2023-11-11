@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CustomerController extends Controller
 {
@@ -12,7 +13,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('customers.index',['users' => $customers]);
     }
 
     /**
@@ -20,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customers.create', ['user' => new Customer()]);
     }
 
     /**
@@ -28,7 +30,21 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' =>'required',
+            'address' =>'required',
+            'phone_number'=>'required|confirmed',
+            'history_reservation'=>'required',
+        ]);
+
+        $customer = new Customer();
+        $customer->name = $request->input('name');
+        $customer->address = $request->input('address');
+        $customer->phone_number= $request->input('phone_number');
+        $customer->history_reservation= $request->input('history_reservation');
+        $customer->save();
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -36,7 +52,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customers.show',['customer' => $customer]);
     }
 
     /**
@@ -44,7 +60,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit',['customer' => $customer]);
     }
 
     /**
@@ -52,7 +68,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $request->validate([
+            'name' =>'nullable',
+            'address' =>['nullable',Rule::unique('customers')->ignore($customer->id)],
+            'phone_number'=>'nullable|confirmed',
+            'history_reservation'=>'nullable',
+        ]);
+
+        $customer->name = $request->input('name') ?? $customer->name;
+        $customer->address = $request->input('address') ?? $customer->address;
+        $customer->phone_number = $request->input('phone_number') ?? $customer->phone_number;
+        $customer->history_reservation = $request->input('history_reservation') ?? $customer->history_reservation;
+        $customer->save();
+
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -60,6 +89,7 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect()->route('customers.index');
     }
 }

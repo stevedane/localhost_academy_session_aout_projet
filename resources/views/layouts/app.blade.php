@@ -101,6 +101,7 @@
                             <p> Users </p>
                         </a>
                     </li>
+
                     <li class="nav-item {{request()->route()->uri == 'roles' ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('roles.index')}}">
                             <i class="material-icons">radio_button_checked</i>
@@ -131,6 +132,7 @@
                             <p>location</p>
                         </a>
                     </li>
+
                 </ul>
             </div>
         </div>

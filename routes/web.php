@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Controllers\GaleryController;
-use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\CarController;
 
 
 
@@ -31,8 +29,6 @@ Route::middleware('auth')->group(function(){
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
     Route::resource('/galery', GaleryController::class);
-    Route::resource('/location', LocationController::class);
-    Route::resource('/car', CarController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');
@@ -45,3 +41,4 @@ Route::middleware('auth')->group(function(){
     ->name('send-mail');
 });
 Route::resource('/users', UserController::class);
+Route::resource('/customers', CustomerController::class);
