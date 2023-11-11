@@ -14,7 +14,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
-        return view('customers.index',['users' => $customers]);
+        return view('customers.index',['customers' => $customers]);
     }
 
     /**
@@ -22,7 +22,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.create', ['user' => new Customer()]);
+        return view('customers.create', ['customers' => new Customer()]);
     }
 
     /**
@@ -33,7 +33,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' =>'required',
             'address' =>'required',
-            'phone_number'=>'required|confirmed',
+            'phone_number'=>'required|numeric|digits:10',
             'history_reservation'=>'required',
         ]);
 
@@ -71,7 +71,7 @@ class CustomerController extends Controller
         $request->validate([
             'name' =>'nullable',
             'address' =>['nullable',Rule::unique('customers')->ignore($customer->id)],
-            'phone_number'=>'nullable|confirmed',
+            'phone_number'=>'nullable|numeric|digits:10',
             'history_reservation'=>'nullable',
         ]);
 

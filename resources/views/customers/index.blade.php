@@ -25,7 +25,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Address</th>
-                      <th>Phone_Number</th>
+                      <th>Created at</th>
                       <th>History_Reservation</th>
                       <th class="disabled-sorting text-center">Actions</th>
                     </tr>
@@ -34,7 +34,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Address</th>
-                      <th>Phone_Number</th>
+                      <th>Created at</th>
                       <th>History_Reservation</th>
                       <th class="text-center">Actions</th>
                     </tr>
@@ -42,10 +42,10 @@
                   <tbody>
                     @foreach ($customers as $customer)  
                     <tr>
-                      <td>{{$customers->name}}</td>
-                      <td>{{$customers->address}}</td>
-                      <td>{{$customers->Phone_Number}}</td>
-                      <td>{{$customers->history_reservation}}</td>
+                      <td>{{$customer->name}}</td>
+                      <td>{{$customer->address}}</td>
+                      <td>{{$customer->Created_at}}</td>
+                      <td>{{$customer->history_reservation}}</td>
                       <td class="text-center">
                         <a href="{{route('customers.show',$customer->id)}}" class="btn btn-link btn-info btn-just-icon"><i class="material-icons">visibility</i></a>
                         <a href="{{route('customers.edit',$customer->id)}}" class="btn btn-link btn-warning btn-just-icon"><i class="material-icons">edit</i></a>

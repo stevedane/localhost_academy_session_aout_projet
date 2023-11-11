@@ -15,7 +15,7 @@
                                 <h4 class="card-title">Customer create</h4>
                             </div>
                             <div class="card-body ">
-                                @include('')
+                                @include('customers._form')
                             </div>
                             <div class="card-footer text-right">
                                 <button type="submit" class="btn btn-rose">Register</button>
