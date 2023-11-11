@@ -64,7 +64,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name'=> 'nullable|Rule::unique('categories')->ignore($category->id)',
+            'name'=> ['nullable',Rule::unique('categories')->ignore($category->id)],
             'description'=> "nullable"
         ]);
         $name = $request->input('name');

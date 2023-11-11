@@ -75,7 +75,7 @@ class PaymentController extends Controller
             'montant'=>'nullable',
             'reference'=>'nullable',
             'system'=>'required',
-            'number'=> 'required|Rule::unique('payments')->ignore($payment->id)',
+            'number'=> ['require',Rule::unique('payments')->ignore($payment->id)],
         ]);
 
         $montant = $request->input('montant');
