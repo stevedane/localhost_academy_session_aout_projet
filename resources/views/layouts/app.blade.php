@@ -95,22 +95,64 @@
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->route()->uri == 'users' ? 'active' : '' }}">
+                    <li class="nav-item {{ strpos(request()->route()->uri, 'users') !== false ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('users.index') }}">
                             <i class="material-icons">radio_button_checked</i>
                             <p> Users </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'cars' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('cars.index')}}">
+                    <li class="nav-item {{ strpos(request()->route()->uri, 'roles') !== false ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('roles.index') }}">
                             <i class="material-icons">radio_button_checked</i>
-                            <p> car </p>
+                            <p> Roles </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'locations' ? 'active' : ''}}">
+                    <li class="nav-item {{ strpos(request()->route()->uri, 'accesses') !== false ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('accesses.index') }}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Accesses </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'customers') !== false ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('customers.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Customers </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'categories') !== false ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('categories.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Categories </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'brands') !== false ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('brands.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Brands </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'cars') !== false ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('cars.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Cars </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'locations') !== false ? 'active' : ''}}">
                         <a class="nav-link" href="{{route('locations.index')}}">
                             <i class="material-icons">radio_button_checked</i>
-                            <p>location</p>
+                            <p> Locations </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'payments') !== false ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('payments.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Payments </p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{strpos(request()->route()->uri, 'comments') !== false ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('comments.index')}}">
+                            <i class="material-icons">radio_button_checked</i>
+                            <p> Comments </p>
                         </a>
                     </li>
                 </ul>
@@ -127,7 +169,7 @@
                                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                             </button>
                         </div>
-                        <a class="navbar-brand" href="#pablo">Dashboard</a>
+                        <a class="navbar-brand" href="!#">{{ config('app.name', 'Laravel') }}</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">

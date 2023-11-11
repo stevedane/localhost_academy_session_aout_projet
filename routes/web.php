@@ -9,6 +9,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\AccessController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +32,15 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 
 Route::middleware('auth')->group(function(){
     Route::resource('/users', UserController::class);
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/accesses', AccessController::class);
     Route::resource('/payments', PaymentController::class);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/customers', CustomerController::class);
     Route::resource('/locations', LocationController::class);
     Route::resource('/cars', CarController::class);
     Route::resource('/brands', BrandController::class);
+    Route::resource('/comments', BrandController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');

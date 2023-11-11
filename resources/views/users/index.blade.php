@@ -6,16 +6,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary card-header-icon d-flex justify-content-between">
-                            <div>
-                                <div class="card-icon">
-                                    <i class="material-icons">assignment</i>
-                                </div>
-                                <h4 class="card-title">Users</h4>
+                        <div class="card-header card-header-primary card-header-icon d-flex">
+                            <div class="card-icon">
+                                <i class="material-icons">assignment</i>
                             </div>
-                            <a href="{{ route('users.create') }}" class="btn btn-success btn-round btn-fab">
-                                <i class="material-icons">add</i>
-                            </a>
+                            <h4 class="card-title">Users</h4>
+                            <div class="ml-3">
+                                <a rel="tooltip" data-original-title="New" href="{{ route('users.create') }}" class="btn btn-success btn-round btn-fab">
+                                    <i class="material-icons" style="width: 100%;line-height:41px">add</i>
+                                </a>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="toolbar">
@@ -46,19 +46,20 @@
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>{{ $user->created_at }}</td>
-                                                <td class="text-center">
+                                                <td class="text-center td-actions">
                                                     <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a href="{{ route('users.show', $user->id) }}"
-                                                            class="btn btn-link btn-info btn-just-icon"><i
-                                                                class="material-icons">visibility</i></a>
-                                                        <a href="{{ route('users.edit', $user->id) }}"
-                                                            class="btn btn-link btn-warning btn-just-icon"><i
+                                                        <a rel="tooltip" data-original-title="Show" href="{{ route('users.show', $user->id) }}"
+                                                            class="btn btn-info btn-round"><i
+                                                                class="material-icons">visibility</i>
+                                                        </a>
+                                                        <a rel="tooltip" data-original-title="Edit" href="{{ route('users.edit', $user->id) }}"
+                                                            class="btn btn-warning btn-round"><i
                                                                 class="material-icons">edit</i></a>
-                                                        <button type="submit"
+                                                        <button  rel="tooltip" data-original-title="Delete" type="submit"
                                                             href="{{ route('users.destroy', $user->id) }}"
-                                                            class="btn btn-link btn-danger btn-just-icon"><i
+                                                            class="btn btn-danger btn-round"><i
                                                                 class="material-icons">delete</i></button>
                                                     </form>
                                                 </td>
