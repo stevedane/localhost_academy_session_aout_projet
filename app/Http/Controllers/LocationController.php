@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LocationController extends Controller
 {
@@ -13,6 +14,8 @@ class LocationController extends Controller
     public function index()
     {
         //
+        $locations=Location::all();
+        return view('locations.index',['locations'=>$locations]);
     }
 
     /**
@@ -21,6 +24,7 @@ class LocationController extends Controller
     public function create()
     {
         //
+        return view('locations.create');
     }
 
     /**
@@ -29,6 +33,23 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'id_car'=>'required',
+            'id_customer'=>'required',
+            'id_payment'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'prix'=>'required'
+        ]);
+        $location=new Location();
+        $location->id_car=$request->id_car;
+        $location->id_payment=$request->id_payment;
+        $location->id_customer->Auth::user()->id;
+        $location->start_date=$request->start_date;
+        $location->end_date=$request->end_date;
+        $location->prix=$request->prix;
+        $location->save();
+        return redirect()->route('location.index');
     }
 
     /**
@@ -37,6 +58,7 @@ class LocationController extends Controller
     public function show(Location $location)
     {
         //
+        return view('locations.show',['location'=>$location]);
     }
 
     /**
@@ -45,6 +67,7 @@ class LocationController extends Controller
     public function edit(Location $location)
     {
         //
+        return view('locations.edit');
     }
 
     /**
@@ -53,13 +76,37 @@ class LocationController extends Controller
     public function update(Request $request, Location $location)
     {
         //
+        $request->validate([
+            'id_car'=>'required',
+            'id_payment'=>'required',
+            'id_customer'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'prix'=>'required'
+        ]);
+        
+        $car=$request->input('id_car');
+        $location->id_customer->Auth::user()->id;
+        $location->id_payment=$request->id;
+        $start_date=$request->input('start_date');
+        $start_date=$request->input('end_date');
+        $prix=$request->input('prix');
+        $car->id_car= $location ?? $request->id_car;
+        $location->start_date= $location ?? $request->start_date;
+        $location->end_date= $location ?? $request->end_date;
+        $location->prix= $location ?? $request->prix;
+        $location->save();
+        return redirect()->route('location.index');
     }
-
+        
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Location $location)
     {
         //
+        $location->delete();
+        return redirect()->route('location.index');
     }
 }

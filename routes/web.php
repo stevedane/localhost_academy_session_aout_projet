@@ -26,8 +26,10 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 
 Route::middleware('auth')->group(function(){
     Route::resource('/users', UserController::class);
-    Route::resource('/payment', PaymentController::class);
-    Route::resource('/category', CategoryController::class);
+    Route::resource('/roles', RoleController::class);
+    Route::resource('/galery', GaleryController::class);
+    Route::resource('/location', LocationController::class);
+    Route::resource('/car', CarController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');

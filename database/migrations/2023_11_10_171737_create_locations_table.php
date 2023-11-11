@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_customer')->constrained('customers','id');
             $table->foreignId('id_car')->constrained('cars','id');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->decimal('prix');
             $table->timestamps();
         });
