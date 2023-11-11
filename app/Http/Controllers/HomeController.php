@@ -70,7 +70,7 @@ class HomeController extends Controller
 
             $user->picture = $pictureFileName;
         }
-        Mail::to('s.fasseu@gmail.com')->send(new Test());
+        
 
         $user->save();
         

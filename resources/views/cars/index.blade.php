@@ -11,7 +11,7 @@
                 <i class="material-icons">car</i>
               </div>
               <h4 class="card-title">Cars</h4>
-              <a href="{{route('car.create')}}" class="btn btn-primary btn-round btn-fab">
+              <a href="{{route('cars.create')}}" class="btn btn-primary btn-round btn-fab">
                       <i class="material-icons">favorite</i>
                     <div class="ripple-container"></div></a>
             </div>
