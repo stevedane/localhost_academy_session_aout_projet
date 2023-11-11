@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Mail\Test;
 use App\Mail\TestMail;
 use App\Models\User;
+use App\Models\Location;
+use App\Models\Customer;
+use App\Models\Car;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -38,7 +42,17 @@ class HomeController extends Controller
     }
 
     public function dashboard(){
-        return view('home');
+        $locations = Location::get()->count();
+        $customers = Customer::get()->count();
+        $cars = Car::get()->count();
+        $payments = Payment::get()->count();
+
+        return view('home',[
+            'locations' => $locations,
+            'customers' => $customers,
+            'cars' => $cars,
+            'payments' => $payments,
+        ]);
     }
 
     public function profile(){
@@ -70,7 +84,6 @@ class HomeController extends Controller
 
             $user->picture = $pictureFileName;
         }
-        Mail::to('s.fasseu@gmail.com')->send(new Test());
 
         $user->save();
         

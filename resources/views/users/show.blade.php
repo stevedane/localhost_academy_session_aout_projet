@@ -6,25 +6,24 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-primary card-header-icon d-flex justify-content-between">
-                            <div>
+                        <div class="card-header card-header-primary card-header-icon d-flex">
+                            
                                 <div class="card-icon">
                                     <i class="material-icons">assignment</i>
                                 </div>
                                 <h4 class="card-title">User details</h4>
-                            </div>
-                            <div>
+                            <div class="ml-3">
                                 <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                   @csrf
                                   @method('delete')
                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-round btn-fab">
-                                    <i class="material-icons">edit</i>
+                                    <i class="material-icons" style="width: 100%;line-height:41px">edit</i>
                                 </a>
                                     <button type="submit" class="btn btn-danger btn-round btn-fab">
-                                        <i class="material-icons">delete</i>
+                                        <i class="material-icons" style="width: 100%;line-height:41px">delete</i>
                                     </button>
                                 <a href="{{ route('users.index') }}" class="btn btn-primary btn-round btn-fab">
-                                    <i class="material-icons">chevron_left</i>
+                                    <i class="material-icons" style="width: 100%;line-height:41px">chevron_left</i>
                                 </a>
                                 </form>
                             </div>
