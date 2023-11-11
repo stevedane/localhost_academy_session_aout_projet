@@ -101,14 +101,14 @@
                             <p> Users </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'galery' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('galery.index')}}">
+                    <li class="nav-item {{request()->route()->uri == 'cars' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('cars.index')}}">
                             <i class="material-icons">radio_button_checked</i>
                             <p> car </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'galery' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('galery.index')}}">
+                    <li class="nav-item {{request()->route()->uri == 'locations' ? 'active' : ''}}">
+                        <a class="nav-link" href="{{route('locations.index')}}">
                             <i class="material-icons">radio_button_checked</i>
                             <p>location</p>
                         </a>
