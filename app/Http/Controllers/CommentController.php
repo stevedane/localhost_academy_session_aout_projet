@@ -12,7 +12,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all()->paginate(10);
+        return view("comments.index", compact("comments"));
     }
 
     /**
@@ -20,7 +21,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view("comments.create");
     }
 
     /**
@@ -28,7 +29,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'id_user'=> 'required',
+            'description'=> 'required',
+            'rate'=>'required'
+        ]);
+        $comment = new Comment();
+        $comment->id_user = $request->input('id_user');
+        $comment->description = $request->input('description');
+        $comment->rate = $request->input('rate');
+
+        $comment->save();
+        return redirect()->route('comments');
     }
 
     /**
@@ -36,7 +49,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        return view('comments.show', compact('comment'));
     }
 
     /**
@@ -44,7 +57,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+        return view('comments.edit', compact('comment'));
     }
 
     /**
@@ -52,7 +65,19 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $request->validate([
+
+            'id_user'=> 'required',
+            'description'=> 'required',
+            'rate'=>'required'
+        ]);
+
+        $comment->id_user = $request->input('id_user') ?? $comment->id_user;
+        $comment->description = $request->input('description') ?? $comment->description;
+        $comment->rate = $request->input('rate') ?? $comment->rate;
+
+        $comment->save();
+        return redirect()->route('comments');
     }
 
     /**
@@ -60,6 +85,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return back();
     }
 }

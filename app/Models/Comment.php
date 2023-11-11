@@ -16,7 +16,8 @@ class Comment extends Model
        'rate'
     ]);
 
-    public function user():HasOne{
+    public function user():HasOne
+    {
 
         return $this->hasOne(User::class,'id_user','id');
     }

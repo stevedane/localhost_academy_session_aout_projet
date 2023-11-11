@@ -101,22 +101,16 @@
                             <p> Users </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'roles' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('roles.index')}}">
+                    <li class="nav-item {{ request()->route()->uri == 'access' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('access.index') }}">
                             <i class="material-icons">radio_button_checked</i>
-                            <p> Roles </p>
+                            <p> Access </p>
                         </a>
                     </li>
-                    <li class="nav-item {{request()->route()->uri == 'roles' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('roles.index')}}">
+                    <li class="nav-item {{ request()->route()->uri == 'comments' ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('comments.index') }}">
                             <i class="material-icons">radio_button_checked</i>
-                            <p> Roles </p>
-                        </a>
-                    </li>
-                    <li class="nav-item {{request()->route()->uri == 'galery' ? 'active' : ''}}">
-                        <a class="nav-link" href="{{route('galery.index')}}">
-                            <i class="material-icons">radio_button_checked</i>
-                            <p> Galeries </p>
+                            <p> Comments </p>
                         </a>
                     </li>
                 </ul>
