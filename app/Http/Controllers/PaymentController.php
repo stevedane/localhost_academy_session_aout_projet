@@ -13,7 +13,8 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::all();
-        return view("payment.index", compact("payments"));
+        return view("payments.index", compact("payments"));
+
     }
 
     /**
@@ -21,7 +22,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        return view("payment.create");
+        return view("payments.create");
+
     }
 
     /**
@@ -47,7 +49,8 @@ class PaymentController extends Controller
         $payment->system=$system;
         $payment->number=$number;
         $payment->save();
-        return redirect()->route('payment.index');
+        return redirect()->route('payments.index');
+
     }
 
     /**
@@ -55,7 +58,8 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        return view('payment.show', compact('payment'));
+        return view('payments.show', compact('payment'));
+
     }
 
     /**
@@ -63,7 +67,8 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return view('payment.edit', compact('payment'));
+        return view('payments.edit', compact('payment'));
+
     }
 
     /**
@@ -75,7 +80,8 @@ class PaymentController extends Controller
             'montant'=>'nullable',
             'reference'=>'nullable',
             'system'=>'required',
-            'number'=> 'required|Rule::unique('payments')->ignore($payment->id)',
+            'number'=> ['require',Rule::unique('payments')->ignore($payment->id)],
+
         ]);
 
         $montant = $request->input('montant');
@@ -88,7 +94,8 @@ class PaymentController extends Controller
         $payment->system=$system ?? $payment->system;
         $payment->number=$number ?? $payment->number=$number;
         $payment->save();
-        return redirect()->route('payment.index');
+        return redirect()->route('payments.index');
+
     }
 
     /**
@@ -97,6 +104,7 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         $payment->delete();
-        return redirect(route('payment.index'))->with('success','');
+        return redirect()->route('payments.index')->with('success','');
+
     }
 }

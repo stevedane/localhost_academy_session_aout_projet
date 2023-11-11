@@ -5,8 +5,10 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-
-
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +29,12 @@ Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard'
 
 Route::middleware('auth')->group(function(){
     Route::resource('/users', UserController::class);
-    Route::resource('/roles', RoleController::class);
-    Route::resource('/galery', GaleryController::class);
+    Route::resource('/payments', PaymentController::class);
+    Route::resource('/categories', CategoryController::class);
+    Route::resource('/customers', CustomerController::class);
+    Route::resource('/locations', LocationController::class);
+    Route::resource('/cars', CarController::class);
+    Route::resource('/brands', BrandController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');
@@ -36,9 +42,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/profile/{user}',[HomeController::class, 'storeProfile'])
     ->name('store-profile');
 
-    
+
     Route::get('/mail',[HomeController::class, 'mail'])
     ->name('send-mail');
 });
-Route::resource('/users', UserController::class);
-Route::resource('/customers', CustomerController::class);

@@ -13,7 +13,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view("category.index", compact("categories"));
+        return view("categories.index", compact("categories"));
+
     }
 
     /**
@@ -21,7 +22,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("category.create");
+        return view("categories.create");
+
     }
 
     /**
@@ -47,7 +49,8 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
     
-        return view("category.show", compact("category"));
+        return view("categories.show", compact("category"));
+
     }
 
     /**
@@ -55,7 +58,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view("category.edit", compact("category"));
+        return view("categories.edit", compact("category"));
+
     }
 
     /**
@@ -64,7 +68,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name'=> 'nullable|Rule::unique('categories')->ignore($category->id)',
+            'name'=> ['nullable',Rule::unique('categories')->ignore($category->id)],
+
             'description'=> "nullable"
         ]);
         $name = $request->input('name');
@@ -72,7 +77,8 @@ class CategoryController extends Controller
         $category->name = $name ?? $category->name;
         $category->description = $description ?? $category->description;
         $category->save();
-        return redirect()->route('category.index')->with('success','');
+        return redirect()->route('categories.index')->with('success','');
+
     }
 
     /**
@@ -81,6 +87,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect("")->route('category.index')->with("success","");
+        return redirect()->route('categories.index')->with("success","");
+
     }
 }

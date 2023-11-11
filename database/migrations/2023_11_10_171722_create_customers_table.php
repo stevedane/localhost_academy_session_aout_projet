@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('phone_number');
-            $table->test('history_reservation');
+            $table->text('history_reservation');
             $table->timestamps();
         });
     }
