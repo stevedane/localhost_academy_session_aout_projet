@@ -10,20 +10,20 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-12 d-flex">
-                <a href="{{route('post.edit',$post->id}}" class="btn btn-sm btn-warning">edit</a>
-                <a href="{{route('post.delete',$post->id}}" class="btn btn-sm btn-danger">delete</a>
+                <a href="{{route('brand.edit',$brand->id}}" class="btn btn-sm btn-warning">edit</a>
+                <a href="{{route('brand.delete',$brand->id}}" class="btn btn-sm btn-danger">delete</a>
                <table class="table table-striped table-responsive"></table>
                <tr>
                 <td>Id :</td>
-                <td>{{$post->id}}</td>
+                <td>{{$brand->id}}</td>
                </tr>
                <tr>
                 <td>Name:</td>
-                <td>{{$post->name}}</td>
+                <td>{{$brand->name}}</td>
                </tr>
                <tr>
                 <td>Description:</td>
-                <td>{{$post->description}}</td>
+                <td>{{$brand->description}}</td>
                </tr>
             </div>
         </div>

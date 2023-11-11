@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <form action="{{route('category.store')}}" method="post">
+                <form action="{{route('brand.store')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="nom">nom</label>
