@@ -5,7 +5,10 @@ use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Models\Customer;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +32,9 @@ Route::middleware('auth')->group(function(){
     Route::resource('/payments', PaymentController::class);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/customers', CustomerController::class);
-    Route::resource('/location', LocationController::class);
-    Route::resource('/car', CarController::class);
+    Route::resource('/locations', LocationController::class);
+    Route::resource('/cars', CarController::class);
+    Route::resource('/brands', BrandController::class);
 
     Route::get('/profile',[HomeController::class, 'profile'])
     ->name('profile');

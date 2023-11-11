@@ -49,7 +49,7 @@ class LocationController extends Controller
         $location->end_date=$request->end_date;
         $location->prix=$request->prix;
         $location->save();
-        return redirect()->route('location.index');
+        return redirect()->route('locations.index');
     }
 
     /**
@@ -96,7 +96,7 @@ class LocationController extends Controller
         $location->end_date= $location ?? $request->end_date;
         $location->prix= $location ?? $request->prix;
         $location->save();
-        return redirect()->route('location.index');
+        return redirect()->route('locations.index');
     }
         
     
@@ -107,6 +107,6 @@ class LocationController extends Controller
     {
         //
         $location->delete();
-        return redirect()->route('location.index');
+        return redirect()->route('locations.index');
     }
 }
